@@ -1,3 +1,4 @@
+import 'package:animationprac/pages/page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     // animation controller
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 4),
     )..forward();
 
     // roatation controller
@@ -40,8 +41,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _controller.reverse();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Page1(),
+            ));
       } else if (status == AnimationStatus.dismissed) {
         _controller.forward();
+        ;
       }
     });
   }
@@ -60,7 +67,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 width: 225,
                 height: 225,
                 decoration: BoxDecoration(
-                  color: Colors.black87,
+                  color: Colors.black54,
                   borderRadius: BorderRadius.circular(_radiusAnimation.value),
                 ),
               ),
